@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tr_section_setttings translate="title" module="detrack">
+                                        <title>Trackingmore General Settings Section</title>
+                                        <sort_order>52001</sort_order>
+                                    </tr_section_setttings>
+									<tr_section_notification_emails translate="title" module="detrack">
+                                        <title>Trackingmore Notification Emails</title>
+                                        <sort_order>51002</sort_order>
+                                    </tr_section_notification_emails>
+                                    <tr_section_carriers translate="title" module="detrack">
+                                        <title>Trackingmore Carrier Settings</title>
+                                        <sort_order>52003</sort_order>
+                                    </tr_section_carriers>
+                     
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

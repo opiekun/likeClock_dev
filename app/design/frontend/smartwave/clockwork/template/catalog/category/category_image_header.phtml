@@ -1,0 +1,16 @@
+
+<?php $categoryImage = Mage::getModel('catalog/layer')->getCurrentCategory()->getImageUrl(); //Get the file name of the Image stored for the category ?>
+<?php $categoryTitle = Mage::getModel('catalog/layer')->getCurrentCategory()->getName(); //Get the file name of the Image stored for the category ?>
+<?php $categoryDescription = Mage::getModel('catalog/layer')->getCurrentCategory()->getDescription(); //Get the file name of the Image stored for the category ?>
+
+<?php if($categoryImage): ?>
+<div class="page-title-image">
+    <img src="<?php echo $categoryImage  ?>" title=""/>
+    <div class="text-title-container">
+        <div class="text-inner-container">
+            <h2><?php echo $categoryTitle; ?></h2>
+            <p><?php echo $categoryDescription; ?></p>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

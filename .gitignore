@@ -1,0 +1,15 @@
+.DS_Store
+.idea
+/media
+/var
+/app/etc/local.xml
+/dev
+var
+var/*
+/downloader
+*.sql
+*.tar
+*.tar.gz
+*.gz
+*.zip
+*.rar

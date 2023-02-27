@@ -1,0 +1,27 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Pgrid
+ */
+?>
+<form id="apmgrid-group" name="apmgrid-group" action="<?php echo $this->getChangeGroupUrl(); ?>" method="post">
+    <input type="hidden" name="attributesKey" id="attributesKey" value="<?php echo $this->getAttributesKey();?>"/>
+    <input type="hidden" name="form_key" value="<?php echo $this->getFormKey(); ?>" />
+
+        <label for="ampgrid-group-select"><?php echo $this->__('Grid Template');?>:</label>
+        <select id="ampgrid-group-select" name="group_id" onchange="pAttribute.changeTemplate();">
+            <?php /**
+             * @var Amasty_Pgrid_Model_Group $group
+             */?>
+            <option value="0"><span><?php echo $this->__('Choose a Template...');?></span></option>
+            <?php foreach($this->getGroups() as $group):?>
+                <option
+                    value="<?php echo $group->getId()?>"
+                    <?php echo $group->getId() == $this->getGroupId() ? 'selected="selected"' : '';?>>
+                    <?php echo $this->__($this->escapeHtml($group->getTitle()))?>
+                </option>
+            <?php endforeach;?>
+        </select>
+
+</form>

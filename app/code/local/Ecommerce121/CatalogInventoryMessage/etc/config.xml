@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 121Ecommerce
+ *
+ * @category   Ecommerce121
+ * @package    Ecommerce121_CatalogInventoryMessage
+ * @module     Extended CatalogInventory
+ * @author     Augusto Leao <augusto@121ecommerce.com>
+ */
+-->
+<config>
+    <modules>
+        <Ecommerce121_CatalogInventoryMessage>
+            <version>0.1.0</version>
+        </Ecommerce121_CatalogInventoryMessage>
+    </modules>
+    <global>
+        <blocks>
+            <ecommerce121_cataloginventorymessage>
+                <class>Ecommerce121_CatalogInventoryMessage_Block</class>
+            </ecommerce121_cataloginventorymessage>
+            <cataloginventory>
+                <rewrite>
+                    <stockqty_default>Ecommerce121_CatalogInventoryMessage_Block_CatalogInventory_Stockqty_Default</stockqty_default>
+                    <stockqty_type_grouped>Ecommerce121_CatalogInventoryMessage_Block_CatalogInventory_Stockqty_Type_Grouped</stockqty_type_grouped>
+                    <stockqty_type_configurable>Ecommerce121_CatalogInventoryMessage_Block_CatalogInventory_Stockqty_Type_Configurable</stockqty_type_configurable>
+                </rewrite>
+            </cataloginventory>
+        </blocks>
+    </global>
+    <default>
+        <cataloginventory>
+                <options>
+                    <show_stock_threshold_qty_message>1</show_stock_threshold_qty_message>
+                </options>
+        </cataloginventory>
+    </default>
+</config>

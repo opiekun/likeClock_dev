@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * 121Ecommerce
+ *
+ * @category   Ecommerce121
+ * @package    Ecommerce121_CatalogInventoryMessage
+ * @module     Extended CatalogInventory
+ * @author     Augusto Leao <augusto@121ecommerce.com>
+ */
+-->
+<config>
+    <modules>
+        <Ecommerce121_CatalogInventoryMessage>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Ecommerce121_CatalogInventoryMessage>
+    </modules>
+</config>

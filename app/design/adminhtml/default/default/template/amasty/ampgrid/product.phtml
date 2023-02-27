@@ -1,0 +1,32 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2016 Amasty (https://www.amasty.com)
+ * @package Amasty_Pgrid
+ */
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-products"><?php echo Mage::helper('catalog')->__('Manage Products') ?></h3></td>
+            <td class="a-right">
+                <?php echo $this->getButtonsHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<?php if( !$this->isSingleStoreMode() ): ?>
+    <?php echo $this->getChildHtml('store_switcher');?>
+<?php else: ?>
+<div class="switcher">
+
+<?php
+    /** @var Amasty_Pgrid_Block_Adminhtml_Catalog_Product $this */
+    echo $this->getChildHtml('grid_template_switcher');
+    echo $this->getChildHtml('ampgrid_jsinit');
+?>
+</div>
+<?php endif;?>
+<div>
+    <?php echo $this->getGridHtml() ?>
+</div>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_urapidflowadmin_profile_edit>
+        <reference name="head">
+            <action method="addCss"><name>urapidflow/urapidflow.css</name></action>
+            <action method="addItem"><type>skin_js</type><name>urapidflow/urapidflow.js</name></action>
+        </reference>
+    </adminhtml_urapidflowadmin_profile_edit>
+    <_urf_multiple_uploader>
+        <reference name="head">
+            <action method="addJs">
+                <name>lib/uploader/flow.min.js</name>
+            </action>
+            <action method="addJs">
+                <name>lib/uploader/fusty-flow.js</name>
+            </action>
+            <action method="addJs">
+                <name>lib/uploader/fusty-flow-factory.js</name>
+            </action>
+            <action method="addJs">
+                <name>mage/adminhtml/uploader/instance.js</name>
+            </action>
+        </reference>
+    </_urf_multiple_uploader>
+</layout>

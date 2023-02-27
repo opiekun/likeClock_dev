@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+    <detrack_index_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/detrack.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="detrack/index" name="detrack_index" template="detrack/index.phtml">
+                <block type="detrack/crosssell" name="detrack_crosssell" template="detrack/crosssell.phtml"/>
+            </block>
+        </reference>
+    </detrack_index_index>
+    <detrack_index_popup>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>detrack/pagepopup.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/detrack.css</stylesheet>
+            </action>
+			<action method="addJs">
+				<script>detrack/jquery.min.js</script>
+			</action>
+			<action method="addJs">
+				<script>detrack/iframeResizer.min.js</script>
+			</action>
+        </reference>
+        <reference name="content">
+            <block type="detrack/index" name="detrack_popup" template="detrack/popup.phtml"/>
+        </reference>
+    </detrack_index_popup>
+    <detrack_unsubscribe_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>css/detrack.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="detrack/index" name="detrack_unsubscribe_index" template="detrack/unsubscribe.phtml"/>
+        </reference>
+    </detrack_unsubscribe_index>
+</layout>

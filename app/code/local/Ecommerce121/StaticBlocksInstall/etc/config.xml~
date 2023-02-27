@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Ecommerce121_Shiprestrictioninventory>
+            <version>1.0.0</version>
+        </Ecommerce121_Shiprestrictioninventory>
+    </modules>
+
+    <global>
+        <resources>
+            <shiprestrictioninventory_setup>
+                <setup>
+                    <module>Ecommerce121_Shiprestrictioninventory</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </shiprestrictioninventory_setup>
+            <shiprestrictioninventory_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </shiprestrictioninventory_write>
+            <shiprestrictioninventory_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </shiprestrictioninventory_read>
+        </resources>
+
+    </global>
+</config>

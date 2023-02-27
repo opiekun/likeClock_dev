@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <tr_tab translate="label" module="detrack">
+            <label>TrackingMore</label>
+            <sort_order>52000</sort_order>
+        </tr_tab>
+    </tabs>
+    <sections>
+        <tr_section_setttings translate="label" module="detrack">
+            <label>TrackingMore Settings</label>
+            <class>trackingmore-settings</class>
+            <tab>tr_tab</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>52001</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			    <groups>
+                <settings translate="label">
+                    <expanded>1</expanded>
+                    <label>General settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </status>
+                        <api_key translate="label">
+                            <label><![CDATA[ API key <strong style="color:red">*</strong>]]></label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>required-entry</validate>
+                        </api_key>
+                        <last_cron>
+                            <label>Last Cron Time</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>101</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </last_cron>
+                        <last_carrier_update>
+                            <label>Last Carrier Update</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>102</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </last_carrier_update>
+						<version>
+                            <label><![CDATA[<strong>Version</strong>]]></label>
+                            <frontend_type>note</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment>
+                                <![CDATA[
+									1.1.2
+								]]>
+                            </comment>
+                        </version>
+                        <upgrade_note>
+                            <label><![CDATA[<strong>How to setup</strong>]]></label>
+                            <frontend_type>note</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>
+                                <![CDATA[
+									<ol>
+										<li style="margin-bottom:10px !important;color:red;">1. This plugin is not compatible with other parcel tracking plugins. Therefore, when using it, please make sure you are not using other parcel tracking plugins!</li>
+										<li style="margin-bottom:10px !important;">2. Sign up at <a href="//my.trackingmore.com/" target="_blank">my.trackingmore.com</a></li>
+										<li style="margin-bottom:10px !important;">3. Go to <a href="//my.trackingmore.com/api_keys.php" taget="_blank">"API keys"</a> and generate new key</li>
+										<li style="margin-bottom:10px !important;">4. Copy API key and paste to the field below</li>
+										<li style="margin-bottom:10px !important;">5. Change status to "Enabled" and click "Save Config"</li>
+										<li>6. Now the plugin is active and running</li>
+									</ol>
+								]]>
+                            </comment>
+                        </upgrade_note>
+                        <disable_default_carriers translate="label">
+						    <backend_model>trackingmoredetrackvalidation/enableTracking</backend_model>
+                            <label>Disable default carriers</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </disable_default_carriers>
+                      
+                    </fields>
+                </settings>
+                <crosssell>
+                    <expanded>1</expanded>
+                    <label>Cross-sell settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <cross_sell_page translate="label">
+                            <label>Show cross-sell items on shipment information page</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cross_sell_page>
+                        <cross_sell_page_items translate="label">
+                            <label>Number of cross-sell items on page</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Recommended value is between 4 and 6</comment>
+                        </cross_sell_page_items>
+                    </fields>
+                </crosssell>
+            </groups> 
+        </tr_section_setttings>
+		
+		 <tr_section_notification_emails translate="label" module="sales">
+            <label>Email Notifications</label>
+            <class>trackingmore-settings</class>
+            <tab>tr_tab</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>52002</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                 <settings translate="label">
+                    <expanded>1</expanded>
+                    <label>General settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+						 <!--
+                        <tr_enable_notifications translate="label">
+						    <backend_model>trackingmoredetrackvalidation/enableNotifications</backend_model>
+                            <label>Enable Notifications</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+							<comment> TrackingMore will automatically import customers info created at Magento.if you set "disable" ,TrackingMore will Unable to notify customers</comment>
+                        </tr_enable_notifications>
+						-->
+						
+				        <upgrade_note>
+							<label><![CDATA[<strong>Option 1 - Recommended</strong>]]></label>
+							<frontend_type>note</frontend_type>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>
+								<![CDATA[
+
+									<ol>
+										<li style="margin-bottom:10px !important;">1. <a href="//www.trackingmore.com/signup.html" target="_blank">Sign up free</a> for a TrackingMore account</li>
+										<li style="margin-bottom:10px !important;">2. Go to <a href="//www.trackingmore.com/pricing.html" target="_blank">“Pricing”</a> and purchase our service</li>
+										<li>3. Go to "<a href="//my.trackingmore.com/smssetting.php" target="_blank">Notifications</a>" and set email notifications. You can also customize your own email templates by clicking <a href="//my.trackingmore.com/email_auto.php?lang=en" target="_blank">here</a>.</li>
+									</ol>
+									Note: TrackingMore will automatically import shipments created at Magento. You can login to your TrackingMore account and check.
+								]]>
+							</comment>
+						</upgrade_note>
+					</fields>
+					</settings>
+            </groups>
+        </tr_section_notification_emails>
+		
+        <tr_section_carriers>
+            <label>Carrier Settings</label>
+            <class>trackingmore-settings</class>
+            <tab>tr_tab</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>52003</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <carriers translate="label">
+                    <expanded>1</expanded>
+                    <label>Enabled Carriers</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>detrack/adminhtml_system_config_form_fieldset_carrier</frontend_model>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                </carriers>
+            </groups>
+        </tr_section_carriers>
+    </sections>
+</config>

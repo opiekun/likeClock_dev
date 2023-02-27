@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Trackingmore_Detrack>
+      <active>true</active>
+      <codePool>community</codePool>
+      <version>1.0.5</version>
+    </Trackingmore_Detrack>
+  </modules>
+</config>

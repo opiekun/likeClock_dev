@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento 1.9.1.0 has a bug in that the configurable options are sorted by
+ * ID rather than position for the Configurable Product's front end view script.
+ * This extension addresses this problem.
+ *
+ * @category    FirstScribe
+ * @package     FirstScribe_CatalogOptionSortFix
+ * @version     2014.12.15
+ */
+-->
+<config>
+    <modules>
+        <Ecommerce121_CatalogOptionSortFix>
+            <version>1.0.0</version>
+        </Ecommerce121_CatalogOptionSortFix>
+    </modules>
+    <global>
+        <blocks>
+            <catalog>
+                <rewrite>
+                    <product_view_type_configurable>Ecommerce121_CatalogOptionSortFix_Block_Product_View_Type_Configurable</product_view_type_configurable>
+                </rewrite>
+            </catalog>
+        </blocks>
+    </global>
+</config>

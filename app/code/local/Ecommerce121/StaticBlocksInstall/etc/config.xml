@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <modules>
+        <Ecommerce121_StaticBlocksInstall>
+            <version>1.0.0</version>
+        </Ecommerce121_StaticBlocksInstall>
+    </modules>
+
+    <global>
+        <resources>
+            <staticblocksinstall_setup>
+                <setup>
+                    <module>Ecommerce121_StaticBlocksInstall</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </staticblocksinstall_setup>
+            <staticblocksinstall_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </staticblocksinstall_write>
+            <staticblocksinstall_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </staticblocksinstall_read>
+        </resources>
+
+    </global>
+</config>

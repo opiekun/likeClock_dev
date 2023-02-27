@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+    <name>magmodules+Magmodules_Sortbydate</name>
+    <version>1.5.0</version>
+    <stability>stable</stability>
+    <license>OSL 3.0</license>
+    <channel>aeff42e9bf981a23e7032536630700cc</channel>
+    <extends/>
+    <summary>Sort category products by date</summary>
+    <description>Sort category products by date</description>
+    <notes>1.5.0&#xD;
+</notes>
+    <authors><author><name>Magmodules</name><user>magmodules</user><email>info@magmodules.eu</email></author></authors>
+    <date>2017-05-30</date>
+    <time>07:56:26</time>
+    <contents><target name="magelocal"><dir name="Magmodules"><dir name="Sortbydate"><dir name="Block"><dir name="Adminhtml"><dir name="Render"><file name="Button.php" hash="79e65fe22c709333fbe33abd26a2950b"/><file name="Status.php" hash="a51d6d01d4aaa0e7221eea3a8dec13bd"/></dir></dir></dir><dir name="Helper"><file name="Data.php" hash="3da56e1e84e5e477bdaed4e3bc4851eb"/></dir><dir name="Model"><dir name="System"><dir name="Config"><dir name="Source"><file name="Sorting.php" hash="46b3898b762dcbd27e006f3dac54fdf0"/></dir></dir></dir></dir><dir name="controllers"><dir name="Adminhtml"><file name="UpdatesortController.php" hash="600a3e3234134eb13375a02fd0adbb9a"/></dir></dir><dir name="etc"><file name="adminhtml.xml" hash="4c876065664e5453a5f562244e778980"/><file name="config.xml" hash="5e204911740d105b9a7e862e15907e48"/><file name="system.xml" hash="b2981dea9fc7fba9b07e64b2a0876d57"/></dir><dir name="sql"><dir name="sortbydate_setup"><file name="mysql4-install-0.1.0.php" hash="3ad819928f2b57f427f7b9e934583a90"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Magmodules_Sortbydate.xml" hash="b28831889db7957690f9feaa23928c60"/></dir></target><target name="magelocale"><dir><dir name="en_US"><file name="Magmodules_Sortbydate.csv" hash="85b312df796f3e56bda1ba18af5ac77b"/></dir><dir name="nl_NL"><file name="Magmodules_Sortbydate.csv" hash="e169797cd2c91bd2b8ba14059d6c9b81"/></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="magmodules_sortbydate.xml" hash="b3260dedee6007c5d0ab59cdd98181a9"/></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>7.9.9</max></php></required></dependencies>
+</package>

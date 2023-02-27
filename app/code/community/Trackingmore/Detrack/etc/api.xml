@@ -1,0 +1,43 @@
+<config>
+    <api>
+        <resources>
+            <detrack translate="title" module="detrack">
+                <title>Trackingmore Email Resource</title>
+                <model>detrack/api</model>
+                <methods>
+                    <info translate="title" module="detrack">
+                        <title>Retrieve notification email info</title>
+                    </info>
+                    <test translate="title" module="detrack">
+                        <title>Test Trackingmore API connection</title>
+                    </test>
+                </methods>
+                <faults module="detrack">
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid tracking data. Details in error message.</message>
+                    </data_invalid>
+                    <not_exists>
+                        <code>102</code>
+                        <message>Tracking code does not exist.</message>
+                    </not_exists>
+                </faults>
+            </detrack>
+        </resources>
+        <acl>
+            <resources>
+                <detrack translate="title" module="detrack">
+                    <title>Trackingmore notifications</title>
+                    <info translate="title" module="detrack">
+                        <title>Get Email Template Info</title>
+                        <acl>detrack/info</acl>
+                    </info>
+                    <test translate="title" module="detrack">
+                        <title>Test Trackingmore API connection</title>
+                        <acl>detrack/test</acl>
+                    </test>
+                </detrack>
+            </resources>
+        </acl>
+    </api>
+</config>

@@ -1,0 +1,308 @@
+.catalog-category-view{
+
+  .top-container {
+    .breadcrumbs {
+      padding: 0px;
+      padding-bottom: 15px;
+      padding-left: 15px;
+      color: $color-grey-btn;
+      background-color: $color-text-white;
+      a {
+        color: $color-grey-btn;
+      }
+      .a-left {
+        padding-left: 0px;
+      }
+    }
+  }
+
+  .block-layered-nav dt:before, .block-category-nav .block-title:before{
+    color: $color-text-black;
+    background-color:transparent;
+    border:none;
+    font-size:13px;
+  }
+
+  .category-products{
+
+    .toolbar {
+      width:100%;
+
+      .sorter {
+
+        .sort-by{
+          select{
+            height: 31px;
+          }
+        }
+
+        .view-mode{
+          strong i{
+            color:$color-text-black;
+          }
+
+          i{
+            width:31px;
+            height:31px;
+            line-height: 28px;
+            font-size:18px;
+            border-color:transparent;
+            background-color:transparent;
+          }
+          i:hover{
+            color:$color-text-black;
+          }
+        }
+
+        .limiter{
+
+          select{
+            height:31px;
+          }
+
+        }
+
+        .pager {
+
+          .pages {
+
+            li {
+              height: 29px;
+              width: 29px;
+              line-height: 26px;
+              border-radius: 6px;
+            }
+
+            li.current {
+              border: 1px solid $color-text-black;
+              background: $color-text-black;
+              font-weight: bold;
+
+              a {
+                font-weight: bold;
+                color: $color-text-white;
+              }
+
+            }
+
+            li > a {
+              font-weight: bold;
+              height: 30px;
+              border: 1px solid $color-text-black;
+              color: $color-grey-btn;
+              border-radius: 6px;
+            }
+
+            li > a:hover {
+              background: $color-text-black;
+              color: $color-text-white;
+              border: 1px solid $color-text-black;
+            }
+
+          }
+        }
+      }
+    }
+  }
+
+  .products-grid{
+    .product-image-area {
+      border: 0px;
+    }
+    .item:hover{
+      .item-area{
+        a.quickview-icon{
+          border: 1px solid $color-text-black;
+          background: $color-text-black;
+        }
+        .details-area{
+          .actions{
+            .addtocart{
+              border: 1px solid $color-text-black;
+              background: $color-text-black;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .sidebar{
+
+    .block-layered-nav{
+
+      #narrow-by-list{
+
+        dt.odd{
+         border: 1px solid $color-grey-btn;
+         background-color:$color-lightgray;
+          border-bottom:0px;
+
+        }
+        dd.swatch-label{
+          min-width: 26px!important;
+        }
+        dd.odd{
+          border: 1px solid $color-grey-btn;
+          background-color:$color-lightgray;
+
+          .price{
+
+            .ui-slider-range{
+              background: $color-grey-btn;
+            }
+
+            .ui-slider-handle{
+              margin-left: -0.3em;
+              width: 7px;
+              height: 26px;
+              margin-top: -5px;
+              background: $color-grey-btn;
+            }
+
+            .text-box{
+
+              .minPrice{
+                background: $color-input-background;
+                border: 1px solid $color-text-input !important;
+              }
+              .maxPrice{
+                  background: $color-input-background;
+                  border: 1px solid $color-text-input !important;
+              }
+
+              .go{
+                  background-color:$color-text-white;
+                  color:$color-grey-btn;
+                  font-weight: 800;
+                  border:1px solid $color-grey-btn;
+              }
+
+            }
+
+          }
+
+        }
+
+        dt.even{
+          border: 1px solid $color-grey-btn;
+          background-color:$color-lightgray;
+          border-bottom:0px;
+        }
+
+        dd.even{
+          border: 1px solid $color-grey-btn;
+          background-color:$color-lightgray;
+        }
+
+      }
+
+    }
+
+  }
+  .sidebar{
+    .block-category-nav{
+        .block-title{
+          border: 1px solid $color-grey-btn;
+          background-color:$color-lightgray;
+          border-bottom:none;
+
+        }
+        .block-content{
+          border: 1px solid $color-grey-btn;
+          background-color:$color-lightgray;
+
+        }
+    }
+  }
+
+
+  .page-title-image{
+    position:relative;
+    width:100%;
+    img{
+      width:100%;
+    }
+    .text-title-container{
+      position:absolute;
+      height:100px;
+      background: rgba(50,50,50,0.7);
+      bottom:0;
+      width: 100%;
+
+      @media (max-width: 992px) {
+        .text-inner-container {
+          width: 970px;
+        }
+      }
+      @media (max-width: 768px) {
+        .text-inner-container {
+          width: 750px;
+        }
+      }
+
+      .text-inner-container {
+        margin: 0 auto;
+        width: 1170px;
+        padding: 20px;
+
+        h2{
+          font-weight: bold;
+          font-size: 23px;
+          text-transform: lowercase;
+          text-align: left;
+          margin-bottom:5px;
+          color:$color-text-white !important;
+        }
+        h2:first-letter{
+          text-transform: uppercase;
+        }
+        p{
+          text-align: left;
+          color:$color-text-white;
+        }
+
+      }
+    }
+  }
+
+  .configurable-swatch-list{
+    li{
+      .swatch-link{
+        .swatch-label{
+          height:24px !important;
+          font-size:11px !important;
+          background: $color-text-white !important;
+          color: $color-text-black !important;
+          border:1px solid $color-text-black !important;
+          line-height: 25px !important;
+          margin: 0 0.25px 0 0 !important;
+          min-width:40px !important;
+        }
+      }
+    }
+    li:hover{
+      .swatch-link{
+        .swatch-label {
+          background: $color-text-black !important;
+          color: $color-text-white !important;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .btn-remove{
+    color:$color-dark-green;
+  }
+  .block-layered-nav {
+    .actions {
+      a {
+        color: $color-dark-green;
+      }
+    }
+  }
+  .amshopby-select {
+    width: 100%!important;
+  }
+}

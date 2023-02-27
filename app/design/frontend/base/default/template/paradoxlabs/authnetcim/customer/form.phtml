@@ -1,0 +1,255 @@
+<?php $code   = Mage::registry('tokenbase_method'); ?>
+<?php $method = Mage::helper('payment')->getMethodInstance( $code ); ?>
+
+<?php if( $this->isEdit() ): ?>
+	<h2><?php echo $this->__('Editing Card %s', $this->getCard()->getLabel() ); ?></h2>
+<?php else: ?>
+	<h2><?php echo $this->__('Add A Credit Card'); ?></h2>
+<?php endif; ?>
+
+<form action="<?php echo $this->getAction(); ?>" method="post" id="form-validate">
+	<input type="hidden" name="form_key" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+	<input type="hidden" name="id" value="<?php echo $this->getCard()->getId(); ?>" />
+	<input type="hidden" name="method" value="<?php echo $code; ?>" />
+	<?php if( $method->isAcceptJsEnabled() === true ): ?>
+		<input type="hidden" name="payment[acceptjs_key]" id="<?php echo $code; ?>_acceptjs_key" value="" />
+		<input type="hidden" name="payment[acceptjs_value]" id="<?php echo $code; ?>_acceptjs_value" value="" />
+		<input type="hidden" name="payment[cc_last4]" id="<?php echo $code; ?>_cc_last4" value="" />
+	<?php endif; ?>
+	<ul class="form-list">
+		<li><h4><?php echo $this->__('Cardholder Information'); ?></h4></li>
+<?php /*		<li>
+			<div class="input-box"><?php echo $this->getAddressesHtmlSelect('billing'); ?></div>
+		</li> */ ?>
+		<li id="billing-new-address-form">
+			<div class="">
+				<ul>
+					<li>
+						<label for="<?php echo $code; ?>_fn" class="required"><em>*</em><?php echo $this->__('First Name'); ?></label>
+						<div class="input-box">
+							<input type="text" id="<?php echo $code; ?>_fn" name="billing[firstname]" class="input-text required-entry" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('firstname') ); ?>" />
+						</div>
+					</li>
+					<li>
+						<label for="<?php echo $code; ?>_ln" class="required"><em>*</em><?php echo $this->__('Last Name'); ?></label>
+						<div class="input-box">
+							<input type="text" id="<?php echo $code; ?>_ln" name="billing[lastname]" class="input-text required-entry" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('lastname') ); ?>" />
+						</div>
+					</li>
+					<li>
+						<label for="<?php echo $code; ?>_company"><?php echo $this->__('Company'); ?></label>
+						<div class="input-box">
+							<input type="text" id="<?php echo $code; ?>_company" name="billing[company]" class="input-text" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('company') ); ?>" />
+						</div>
+					</li>
+					<li>
+						<label for="<?php echo $code; ?>_street" class="required"><em>*</em><?php echo $this->__('Street Address'); ?></label>
+						<div class="input-box">
+							<input type="text" id="<?php echo $code; ?>_street" name="billing[street][]" class="input-text required-entry <?php echo Mage::helper('tokenbase')->getAttributeValidationClass('street') ?>" value="<?php echo $this->escapeHtml( $this->getStreetLine(1) ); ?>" />
+						</div>
+					</li>
+					<?php for ($i = 2, $n = Mage::helper('customer/address')->getStreetLines(); $i <= $n; $i++): ?>
+						<li>
+							<div class="input-box">
+								<input type="text" id="<?php echo $code; ?>_street_<?php echo $i ?>" name="billing[street][]" class="input-text <?php echo str_replace( 'required-entry', '', Mage::helper('tokenbase')->getAttributeValidationClass('street') ); ?>" value="<?php echo $this->escapeHtml( $this->getStreetLine($i) ); ?>" />
+							</div>
+						</li>
+					<?php endfor; ?>
+					<li>
+						<label for="<?php echo $code; ?>_city" class="required"><em>*</em><?php echo $this->__('City'); ?></label>
+						<div class="input-box">
+							<input type="text" id="<?php echo $code; ?>_city" name="billing[city]" class="input-text required-entry <?php echo Mage::helper('tokenbase')->getAttributeValidationClass('city') ?>" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('city') ); ?>" />
+						</div>
+					</li>
+					<li>
+						<label for="<?php echo $code; ?>_st" class="required"><em>*</em><?php echo $this->__('State/Province'); ?></label>
+						<div class="input-box">
+							<select style="" class="validate-select required-entry" title="State/Province" name="billing[region_id]" id="region_id" style="display: none;">
+								<option value=""><?php echo $this->__('Please select region, state or province'); ?></option>
+							</select>
+							<input type="text" class="input-text required-entry <?php echo Mage::helper('tokenbase')->getAttributeValidationClass('region') ?>" title="State/Province" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('region') ); ?>" name="billing[region]" id="region" />
+						</div>
+					</li>
+					<li>
+						<label for="<?php echo $code; ?>_postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code'); ?></label>
+						<div class="input-box">
+							<input type="text" id="<?php echo $code; ?>_postcode" name="billing[postcode]" class="input-text required-entry <?php echo Mage::helper('tokenbase')->getAttributeValidationClass('postcode') ?>" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('postcode') ); ?>" />
+						</div>
+					</li>
+					<li>
+						<label for="<?php echo $code; ?>_country" class="required"><em>*</em><?php echo $this->__('Country'); ?></label>
+						<div class="input-box">
+							<?php echo Mage::helper('tokenbase')->getCountryHtmlSelect( 'billing[country_id]', $this->getCard()->getAddress('country_id'), 'country' ); ?>
+						</div>
+					</li>
+					<li>
+						<label for="telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
+						<div class="input-box">
+							<input type="text" name="billing[telephone]" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('telephone') ) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text <?php echo Mage::helper('tokenbase')->getAttributeValidationClass('telephone') ?>" id="telephone" />
+						</div>
+					</li>
+					<li>
+						<label for="fax"><?php echo $this->__('Fax') ?></label>
+						<div class="input-box">
+							<input type="text" name="billing[fax]" id="fax" title="<?php echo $this->__('Fax') ?>" value="<?php echo $this->escapeHtml( $this->getCard()->getAddress('fax') ) ?>" class="input-text <?php echo Mage::helper('tokenbase')->getAttributeValidationClass('fax') ?>" />
+						</div>
+					</li>
+				</ul>
+			</div>
+		</li>
+		
+		<li><h4><?php echo $this->__('Credit Card Information'); ?></h4></li>
+		<?php if( $this->isEdit() ): ?>
+			<li>
+				<input type="radio" class="left" name="payment[sameCard]" value="1" id="<?php echo $code; ?>_sameCard_1" checked="checked" /> <label for="<?php echo $code; ?>_sameCard_1"><?php echo $this->__( 'Continue using payment data %s', $this->getCard()->getLabel() ); ?></label><br />
+				<input type="radio" class="left" name="payment[sameCard]" value="0" id="<?php echo $code; ?>_sameCard_0" /> <label for="<?php echo $code; ?>_sameCard_0"><?php echo $this->__('Change payment data'); ?></label>
+			</li>
+		<?php endif; ?>
+		<?php $style = ( $this->isEdit() ) ? ' style="display:none"' : ''; ?>
+		<li class="<?php echo $code; ?>_add"<?php echo $style; ?>>
+			<label for="<?php echo $code; ?>_cc_type" class="required"><em>*</em><?php echo $this->__('Credit Card Type'); ?></label>
+			<div class="input-box">
+				<select id="<?php echo $code; ?>_cc_type" name="payment[cc_type]" class="<?php echo $code; ?>_require validate-cc-type-select <?php if( !$this->getCard()->getId() ): ?>required-entry<?php endif; ?>" autocomplete="cc-type">
+					<option value=""><?php echo $this->__('--Please Select--')?></option>
+					<?php foreach( Mage::helper('tokenbase')->getCcAvailableTypes( $code ) as $k => $v ): ?>
+						<option value="<?php echo $k ?>" <?php if( $k == $this->getCard()->getAdditional('cc_type') ): ?>selected="selected"<?php endif; ?>><?php echo $v ?></option>
+					<?php endforeach ?>
+				</select>
+			</div>
+		</li>
+		<li class="<?php echo $code; ?>_add"<?php echo $style; ?>>
+			<label for="<?php echo $code; ?>_cc_number" class="required"><em>*</em><?php echo $this->__('Credit Card Number'); ?></label>
+			<div class="input-box">
+				<input type="text" id="<?php echo $code; ?>_cc_number" autocomplete="cc-number" name="payment[cc_number]" title="<?php echo $this->__('Credit Card Number'); ?>" class="input-text <?php echo $code; ?>_require <?php if( !$this->getCard()->getId() ): ?>required-entry validate-cc-number<?php endif; ?>" value="" />
+			</div>
+		</li>
+		<li id="<?php echo $code; ?>_cc_type_exp_div" class="<?php echo $code; ?>_add sp-methods"<?php echo $style; ?>>
+			<label for="<?php echo $code; ?>_expiration" class="required"><em>*</em><?php echo $this->__('Expiration Date'); ?></label>
+			<div class="input-box">
+				<div class="v-fix">
+					<select id="<?php echo $code; ?>_cc_exp_month" name="payment[cc_exp_month]" class="month <?php echo $code; ?>_require <?php if( !$this->getCard()->getId() ): ?>required-entry<?php endif; ?>" autocomplete="cc-exp-month">
+						<option value=""><?php echo $this->__('Month'); ?></option>
+						<?php $_ccExpMonth = $this->getCard()->getAdditional('cc_exp_month'); ?>
+						<?php foreach( Mage::helper('tokenbase')->getCcMonths() as $k=>$v ): ?>
+							<option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpMonth): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+				<div class="v-fix">
+					<select id="<?php echo $code; ?>_cc_exp_year" name="payment[cc_exp_year]" class="year <?php echo $code; ?>_require <?php if( !$this->getCard()->getId() ): ?>required-entry<?php endif; ?>" autocomplete="cc-exp-year">
+						<option value=""><?php echo $this->__('Year'); ?></option>
+						<?php $_ccExpYear = $this->getCard()->getAdditional('cc_exp_year'); ?>
+						<?php foreach( Mage::helper('tokenbase')->getCcYears() as $k=>$v ): ?>
+							<option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpYear): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+						<?php endforeach ?>
+					</select>
+				</div>
+			</div>
+		</li>
+		<?php if( $method->getConfigData('useccv') ): ?>
+			<?php $requireCvv = ($method->getAdvancedConfigData('require_ccv') == 1); ?>
+			<li id="<?php echo $code; ?>_cc_type_cvv_div" <?php if( $requireCvv == 0 ): ?>class="<?php echo $code; ?>_add"<?php echo $style; ?><?php endif; ?>>
+				<label for="<?php echo $code; ?>_cc_cid" class="required"><em>*</em><?php echo $this->__('Card Verification Number'); ?></label>
+				<div class="input-box">
+					<div class="v-fix">
+						<input type="text" title="<?php echo $this->__('Card Verification Number'); ?>" autocomplete="cc-csc" class="input-text cvv <?php echo $code; ?>_require <?php if( !$this->getCard()->getId() ): ?>required-entry validate-cc-cvn<?php elseif( $requireCvv ): ?>required-entry<?php endif; ?>" id="<?php echo $code; ?>_cc_cid" name="payment[cc_cid]" value="" />
+					</div>
+				</div>
+			</li>
+		<?php endif; ?>
+		<?php if( $method->isAcceptJsEnabled() === true ): ?>
+			<li class="please-wait" id="<?php echo $code; ?>_processing" style="display:none">
+				<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Processing, please wait...') ?>" title="<?php echo $this->__('Processing, please wait...') ?>" class="v-middle" /> <?php echo $this->__('Processing, please wait...'); ?>
+			</li>
+			<li class="please-wait" id="<?php echo $code; ?>_complete" style="display:none">
+				<?php echo $this->__('&#128077; Okay, ready to continue!'); ?>
+			</li>
+			<li class="please-wait" id="<?php echo $code; ?>_failed" style="display:none">
+				<?php echo $this->__('&#10060; Please fix your payment info before continuing.'); ?> <span class="error-text"></span>
+			</li>
+		<?php endif; ?>
+		<li class="buttons-set">
+			<button class="button" type="submit"><span><span><?php echo $this->__('Submit'); ?></span></span></button>
+			<a href="<?php echo $this->getUrl('*/*', array('_secure' => true)); ?>"><?php echo $this->__('Cancel'); ?></a>
+		</li>
+	</ul>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+<?php /*	$('billing-address-select').observe( 'change', function(e) {
+		if( $(this).value == '' ) {
+			$('billing-new-address-form').show();
+		}
+		else {
+			$('billing-new-address-form').hide();
+		}
+	}); */ ?>
+	
+	$('region_id').setAttribute('defaultValue', '<?php echo $this->getCard()->getAddress("region_id"); ?>');
+	
+	var dataForm = new VarienForm('form-validate', true);
+	new RegionUpdater('country', 'region', 'region_id', <?php echo Mage::helper('directory')->getRegionJson(); ?>, undefined, '<?php echo $code; ?>_postcode');
+	
+	$$('#<?php echo $code; ?>_sameCard_0, #<?php echo $code; ?>_sameCard_1').each(function(el) {
+		$(el).observe( 'change', function(e) {
+			$$('.<?php echo $code; ?>_add').each(function(e){
+				e.toggle();
+			});
+			
+			$$('.<?php echo $code; ?>_require').each(function(e){
+				e.toggleClassName('required-entry');
+			});
+		});
+	});
+//]]>
+</script>
+<?php if( $method->isAcceptJsEnabled() === true ): ?>
+	<script type="text/javascript">
+	//<![CDATA[
+		<?php /** We have to load our scripts dynamically as such, because opc will not load them otherwise. Injecting via layout would only cause compatibility problems. **/ ?>
+		if( typeof Accept == 'undefined' ) {
+			var s = document.createElement('script');
+			s.type = "text/javascript";
+			s.src = "https://<?php echo $method->getConfigData('test') ? 'jstest' : 'js'; ?>.authorize.net/v1/Accept.js";
+			var fs = document.getElementsByTagName('script')[0];
+			fs.parentNode.insertBefore(s, fs);
+		}
+		
+		if( typeof pdlAcceptJs == 'undefined' ) {
+			var acceptJs_<?php echo $code; ?>_init = function() {
+				acceptJs_<?php echo $code; ?> = new pdlAcceptJs(
+					'form-validate',
+					'<?php echo addslashes($method->getConfigData('login')); ?>',
+					'<?php echo addslashes($method->getConfigData('client_key')); ?>',
+					'<?php echo $code; ?>',
+					'#form-validate button'
+				);
+				
+				if( typeof window['acceptJs_<?php echo $code; ?>_callback'] == 'undefined' ) {
+					window['acceptJs_<?php echo $code; ?>_callback'] = function(response) {
+						acceptJs_<?php echo $code; ?>.handlePaymentResponse(response);
+					}
+					
+					<?php /** TODO: Remove following expected 9/2016 fix round with deferred loading support **/ ?>
+					window.isReady = true;
+				}
+			}
+			
+			var s = document.createElement('script');
+			s.type = "text/javascript";
+			s.src = "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS) . 'paradoxlabs/authnetcim/accept.js'; ?>";
+			s.onreadystatechange = s.onload = function() {
+				if (!acceptJs_<?php echo $code; ?>_init.done && (!s.readyState || /loaded|complete/.test(s.readyState))) {
+					acceptJs_<?php echo $code; ?>_init.done = true;
+					acceptJs_<?php echo $code; ?>_init();
+				}
+			};
+			var fs = document.getElementsByTagName('script')[0];
+			fs.parentNode.insertBefore(s, fs);
+		}
+		else {
+			acceptJs_<?php echo $code; ?>.bind();
+		}
+	//]]>
+	</script>
+<?php endif; ?>

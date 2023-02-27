@@ -1,0 +1,31 @@
+<?php echo $this->getChildHtml('sticky.nav') ?>
+<?php
+$store = Mage::app()->getStore();
+$code  = $store->getCode();
+$custom_block = Mage::getStoreConfig('porto_settings/header/static_block', $code);
+?>
+    <div class="header-container type5">
+        <div class="header container">
+            <a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo logo-square"><strong><?php echo $this->getLogoAlt(); ?></strong><img src="<?php echo $this->getLogoSrcSmall(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a>
+            <a href="<?php echo $this->getUrl(''); ?>" title="<?php echo $this->getLogoAlt(); ?>" class="logo logo-horizontal"><strong><?php echo $this->getLogoAlt(); ?></strong><img src="<?php echo $this->getLogoSrc(); ?>" alt="<?php echo $this->getLogoAlt(); ?>" /></a>
+            <?php echo $this->getChildHtml('socialIconsHeader'); ?>
+            <div class="menu-area">
+                <div class="links-area">
+                    <?php echo '<div class="custom-block">'.$this->getLayout()->createBlock('cms/block')->setBlockId($custom_block)->toHtml().'</div>'; ?>
+                    <div class="top-links-icon"><a href="javascript:void(0)"><?php echo $this->__("links"); ?></a></div>
+                    <?php echo $this->getChildHtml('topLinks'); ?>
+                </div>
+            </div>
+            <div class="cart-area">
+                <?php echo $this->getChildHtml('minicart'); ?>
+            </div>
+            <div class="search-area">
+                <a href="javascript:void(0);" class="search-icon"><i class="icon-search"></i></a>
+                <?php echo $this->getChildHtml('topSearch'); ?>
+            </div>
+            <?php echo $this->getChildHtml("demo_header_tooltip"); ?>
+            <div class="menu-icon"><a href="javascript:void(0)" title="<?php echo $this->__('Menu'); ?>"><i class="fa fa-bars"></i></a></div>
+            <?php echo $this->getChildHtml('topMenu') ?>
+        </div>
+    </div>
+<?php echo $this->getChildHtml('mobile.nav') ?>

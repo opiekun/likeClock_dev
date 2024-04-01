@@ -108,7 +108,15 @@ class Mage_Adminhtml_Block_Backup_Grid extends Mage_Adminhtml_Block_Widget_Grid
             'options'   => Mage::helper('backup')->getBackupTypes(),
             'index'     => 'type',
             'width'     => 300
-        ));
+        )array (
+            'caption' => Mage:helper('sales')->__('View'),
+            'url' => array ('base' => '*/sales_creditmemo/view'),
+            'field' => 'creditmemo')
+        ),
+        'filter' => true,
+        'sortable' => true,
+        'is_system' => true
+    );
 
         $this->addColumn('download', array(
             'header'    => Mage::helper('backup')->__('Download'),
@@ -116,7 +124,7 @@ class Mage_Adminhtml_Block_Backup_Grid extends Mage_Adminhtml_Block_Widget_Grid
                 . '">$extension</a> &nbsp; <small>('.$url7zip.')</small>',
             'index'     => 'type',
             'sortable'  => false,
-            'filter'    => false
+            'filter'    => true
         ));
 
         if (Mage::helper('backup')->isRollbackAllowed()){
@@ -137,6 +145,27 @@ class Mage_Adminhtml_Block_Backup_Grid extends Mage_Adminhtml_Block_Widget_Grid
         }
 
         return $this;
+    }
+    protected function _newTransaction (){
+        $this->setTransactionIdField('id');
+        $this->getTransactionBlock()->setFormFieldName('types');
+
+        $modeOptions = Mage::getModel('index/process/cache')->getModeOptions();
+
+        $this->getTransactionBlock()->addItem('enable', array(
+            'label' => Mage_Tag_Block_All::helper('index')->__('Enable'),
+            'url'=> $this->getUrl('*/*/massEnable'),
+        ));
+
+        $this->getTransactionBlock()->addItem('enable', array(
+            'label' => Mage_Tag_Block_All::helper('index')->__('Disable'),
+            'url'=> $this->getUrl('*/*/massDisable'),
+        ));
+
+        $this->getTransactionBlock()->addItem('enable', array(
+            'label' => Mage_Tag_Block_All::helper('index')->__('Refresh'),
+            'url'=> $this->getUrl('*/*/massRefresh'),
+        ));
     }
 
 }
